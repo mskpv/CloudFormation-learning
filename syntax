@@ -1,0 +1,17 @@
+The syntax is !If [condition, value_if_true, value_if_false]
+
+
+
+================================================================
+Parameters:
+  EnvironmentName:
+    Type: String
+    Default: dev
+    AllowedValues: [dev, prod]
+
+Conditions:
+  # This condition depends on the value of the EnvironmentName parameter.
+  CreateProdResources: !Equals [!Ref EnvironmentName, prod]
+
+
+Yes, the condition CreateProdResources: !Equals [prod, prod] would always evaluate to true
