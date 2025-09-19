@@ -1,8 +1,8 @@
+COndition IF 
+------------
 The syntax is !If [condition, value_if_true, value_if_false]
 
-
-
-================================================================
+Example:
 Parameters:
   EnvironmentName:
     Type: String
@@ -15,3 +15,57 @@ Conditions:
 
 
 Yes, the condition CreateProdResources: !Equals [prod, prod] would always evaluate to true
+
+================================================================================================================================
+Mappings
+--------
+Mappings:
+  RegionMap:
+    us-east-1:
+      AMI: "ami-0abcdef1234567890"
+    us-west-2:
+      AMI: "ami-0123456789abcdef0"
+
+Explanation:
+--------------
+RegionMap → Mapping name.
+Keys (us-east-1, us-west-2) → Input value, e.g., region.
+Value (AMI) → Output value for that input.
+
+Using Mapping in a Resource
+---------------------------
+Resources:
+  MyEC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      ImageId: !FindInMap 
+        - RegionMap    # Mapping name
+        - !Ref "AWS::Region"  # Key 1 (current region)
+        - AMI          # Key 2 (value inside mapping)
+Explanation:
+------------
+!FindInMap [MapName, TopLevelKey, ValueName]
+MapName → RegionMap
+TopLevelKey → Usually a parameter or AWS pseudo parameter (!Ref "AWS::Region")
+ValueName → The attribute you want (AMI)
+
+Complete Minimal Example
+------------------------
+
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Simple EC2 example using mapping
+
+Mappings:
+  RegionMap:
+    us-east-1:
+      AMI: "ami-0abcdef1234567890"
+    us-west-2:
+      AMI: "ami-0123456789abcdef0"
+
+Resources:
+  MyEC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      ImageId: !FindInMap [RegionMap, !Ref "AWS::Region", AMI]
