@@ -69,3 +69,40 @@ Resources:
     Properties:
       InstanceType: t2.micro
       ImageId: !FindInMap [RegionMap, !Ref "AWS::Region", AMI]
+
+Syntax of Conditions
+====================
+Conditions are defined under the Conditions section and can use intrinsic functions like:
+
+!Equals
+!If
+!Not
+!And
+!Or
+
+Simple Condition
+We want to create a resource only if the environment is "prod".
+
+AWSTemplateFormatVersion: "2010-09-09"
+Parameters:
+  EnvironmentType:
+    Type: String
+    Default: dev
+    AllowedValues:
+      - dev
+      - prod
+Conditions:
+  IsProd: !Equals [ !Ref EnvironmentType, prod ]
+Resources:
+  MyS3Bucket:
+    Type: AWS::S3::Bucket
+    Condition: IsProd
+    Properties:
+      BucketName: !Sub "my-prod-bucket-${AWS::AccountId}"
+
+Explanation:
+
+Parameters → EnvironmentType can be dev or prod.
+Conditions → IsProd evaluates to true if EnvironmentType is prod.
+Resources → MyS3Bucket is created only if IsProd is true.
+
