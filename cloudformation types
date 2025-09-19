@@ -1,0 +1,36 @@
+| Category                            | Examples of Resource Types                                                                                                                   |
+| ----------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Compute**                         | `AWS::EC2::Instance`, `AWS::Lambda::Function`, `AWS::AutoScaling::AutoScalingGroup`, `AWS::ECS::Cluster`                                     |
+| **Storage**                         | `AWS::S3::Bucket`, `AWS::EFS::FileSystem`, `AWS::FSx::FileSystem`                                                                            |
+| **Database**                        | `AWS::RDS::DBInstance`, `AWS::DynamoDB::Table`, `AWS::Neptune::DBCluster`                                                                    |
+| **Networking & Content Delivery**   | `AWS::VPC::VPC`, `AWS::EC2::Subnet`, `AWS::EC2::SecurityGroup`, `AWS::ElasticLoadBalancingV2::LoadBalancer`, `AWS::CloudFront::Distribution` |
+| **Security, Identity & Compliance** | `AWS::IAM::Role`, `AWS::IAM::Policy`, `AWS::KMS::Key`                                                                                        |
+| **Application Integration**         | `AWS::SNS::Topic`, `AWS::SQS::Queue`, `AWS::EventBridge::Rule`                                                                               |
+| **Management & Governance**         | `AWS::CloudWatch::Alarm`, `AWS::CloudTrail::Trail`, `AWS::CloudFormation::Stack`                                                             |
+| **Analytics**                       | `AWS::Kinesis::Stream`, `AWS::Glue::Job`, `AWS::Athena::WorkGroup`                                                                           |
+| **Machine Learning**                | `AWS::SageMaker::NotebookInstance`, `AWS::SageMaker::Model`                                                                                  |
+| **Developer Tools**                 | `AWS::CodeBuild::Project`, `AWS::CodePipeline::Pipeline`                                                                                     |
+| **Media Services**                  | `AWS::MediaConvert::JobTemplate`, `AWS::MediaLive::Channel`                                                                                  |
+| **Migration & Transfer**            | `AWS::DMS::ReplicationInstance`, `AWS::Transfer::Server`                                                                                     |
+| **IoT**                             | `AWS::IoT::Thing`, `AWS::IoT::TopicRule`                                                                                                     |
+| **Customer Engagement**             | `AWS::Connect::Instance`, `AWS::Pinpoint::Campaign`                                                                                          |
+| **Game Tech**                       | `AWS::GameLift::Fleet`, `AWS::GameLift::Alias`                                                                                               |
+
+How Resource Types are Structured
+---------------------------------
+All CloudFormation resource types follow the pattern:
+AWS::<Service>::<Resource>
+
+Examples:
+---------
+AWS::EC2::Instance → EC2 virtual machine
+AWS::S3::Bucket → S3 storage bucket
+AWS::IAM::Role → IAM role for permissions
+Note: Some services have nested resources:
+AWS::EC2::SecurityGroupIngress → Ingress rule inside a Security Group
+AWS::ElasticLoadBalancingV2::Listener → Listener inside an ALB or NLB
+
+Reference:
+----------
+AWS keeps a full up-to-date list here:
+https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html?utm_source=chatgpt.com
