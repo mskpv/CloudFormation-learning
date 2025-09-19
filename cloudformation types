@@ -1,3 +1,5 @@
+Common Resource Type Categories
+-------------------------------
 | Category                            | Examples of Resource Types                                                                                                                   |
 | ----------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Compute**                         | `AWS::EC2::Instance`, `AWS::Lambda::Function`, `AWS::AutoScaling::AutoScalingGroup`, `AWS::ECS::Cluster`                                     |
