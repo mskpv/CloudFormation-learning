@@ -15,4 +15,4 @@ aws elasticbeanstalk describe-configuration-settings \
   --environment-name "Environment-name" \
   --region us-east-1 \
   --query 'ConfigurationSettings[0].OptionSettings[?Namespace==`aws:elasticbeanstalk:application:environment`].[OptionName,Value]' \
-  --output text --profile dishOnline
+  --output text --profile awsOnline
