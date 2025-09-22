@@ -11,8 +11,8 @@ done
 aws elasticbeanstalk describe-environments --environment-names "Environment-name" --region us-east-1 --output json --profile <profile name>
 
 aws elasticbeanstalk describe-configuration-settings \
-  --application-name application-name \
-  --environment-name Environment-name \
+  --application-name "Application-name" \
+  --environment-name "Environment-name" \
   --region us-east-1 \
   --query 'ConfigurationSettings[0].OptionSettings[?Namespace==`aws:elasticbeanstalk:application:environment`].[OptionName,Value]' \
-  --output text > environment_variables.csv
+  --output text --profile dishOnline
