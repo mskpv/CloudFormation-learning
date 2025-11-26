@@ -30,3 +30,6 @@ aws ec2 describe-instances --filters "Name=instance-state-name,Values=running"
 
 # List instances with custom output
 aws ec2 describe-instances --query 'Reservations[*].Instances[*].[InstanceId,InstanceType,State.Name,Tags[?Key==`Name`].Value|[0]]' --output table
+
+# Describe Security Group
+aws ec2 describe-security-groups --group-ids sg-00aee2c765c45e5c1
